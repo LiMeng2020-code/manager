@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<title>bootstrap后台登录表单代码 - 站长素材</title>
+
+<link th:href="@{/css/bootstrap.min.css}" title="" rel="stylesheet" />
+<link title="orange" th:href="@{/css/login.css}" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+  
+<div style="height:1px;"></div>
+<div class="login">
+ <header>
+	<h1>登陆</h1>
+ </header>
+ <div class="sr">
+	<form th:action="@{/user/login}" method="post">
+		<div class="name">
+			<label>
+			<i class="sublist-icon glyphicon glyphicon-user"></i>
+			</label>
+			<input type="text"  name="username" th:placeholder="请输入用户名" class="name_inp">
+		</div>
+		 <div class="name">
+			<label>
+			<i class="sublist-icon glyphicon glyphicon-pencil"></i>
+			</label>
+			<input type="text" name="password" th:placeholder="请输入密码" class="name_inp">
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="验证"></button>
+	</form>
+ </div>
+</div>
+
+<div style="text-align:center;margin:-150px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#ffffff">
+<p>人事管理系统</p>
+<p>Copyright：2020 by:aviccii</a></p>
+</div>
+</body>
+</html>
+
