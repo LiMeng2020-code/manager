@@ -14,8 +14,15 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
-    List<User> getAllUser();
-    @Select("select name,id from where name=#{name}")
-    User getAllUserByName(@Param("name") String name);
-    User loginPage(String name,String id);
+    List<User> queryUserList();
+
+    User queryUserByName(String name);
+
+
+
+    int addUser(User user);
+
+    int updateUser(User user);
+
+    int deleteUser(int id);
  }

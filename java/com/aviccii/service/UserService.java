@@ -1,14 +1,19 @@
 package com.aviccii.service;
 
+import com.aviccii.mapper.UserMapper;
 import com.aviccii.pojo.User;
-
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * @author aviccii 2020/8/17
+ * @author aviccii 2020/8/18
  */
-public interface UserService {
-    List<User> getAllUser();
-    User getAllUserByName(String name);
-    User loginPage(String name, String id);
+@Service
+public class UserService {
+    @Autowired
+    private UserMapper userMapper;
+
+    public User dologin(String name){
+        return this.userMapper.queryUserByName(name);
+    }
 }

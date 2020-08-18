@@ -1,7 +1,7 @@
 package com.aviccii.controller;
 
+import com.aviccii.mapper.UserMapper;
 import com.aviccii.pojo.User;
-import com.aviccii.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +21,34 @@ import java.util.List;
  */
 @Controller
 public class loginController {
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @ResponseBody
+    @GetMapping("/queryUserList")
+    public List<User> queryUserList(){
+        List<User> users = userMapper.queryUserList();
+        for (User user : users) {
+            System.out.println(user);
+        }
+        return users;
+    }
+
+
     @PostMapping(value = "/user/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password,
                         Model model){
+
         //具体的业务
-        if (!StringUtils.isEmpty(username)&"123456".equals(password))
+        if(userMapper.queryUserByName(username) == null){
+            model.addAttribute("msg","用户名或者密码错误");
+            return "login";
+        }
+        User user = userMapper.queryUserByName(username);
+
+        System.out.println(user.getName()+"..."+user.getPwd());
+        if (!StringUtils.isEmpty(username)&user.getPwd().equals(password))
         {
             System.out.println("name:"+username+"pwd:"+password);
             return "index";
