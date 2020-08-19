@@ -14,6 +14,11 @@ public class UserService {
     private UserMapper userMapper;
 
     public User dologin(String name){
-        return this.userMapper.queryUserByName(name);
+        if(userMapper.queryUserByName(name) == null){
+            User user = null;
+            return user;
+        }else {
+            return this.userMapper.queryUserByName(name);
+        }
     }
 }

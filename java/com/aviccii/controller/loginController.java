@@ -2,6 +2,7 @@ package com.aviccii.controller;
 
 import com.aviccii.mapper.UserMapper;
 import com.aviccii.pojo.User;
+import com.aviccii.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,16 +42,17 @@ public class loginController {
                         Model model){
 
         //具体的业务
+
         if(userMapper.queryUserByName(username) == null){
             model.addAttribute("msg","用户名或者密码错误");
             return "login";
         }
         User user = userMapper.queryUserByName(username);
 
-        System.out.println(user.getName()+"..."+user.getPwd());
+
         if (!StringUtils.isEmpty(username)&user.getPwd().equals(password))
         {
-            System.out.println("name:"+username+"pwd:"+password);
+            model.addAttribute("loginUserName",username);
             return "index";
         }else {
             model.addAttribute("msg","用户名或者密码错误");

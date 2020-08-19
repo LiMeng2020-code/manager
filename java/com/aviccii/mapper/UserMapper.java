@@ -18,8 +18,6 @@ public interface UserMapper {
 
     User queryUserByName(String name);
 
-
-
     int addUser(User user);
 
     int updateUser(User user);

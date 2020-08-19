@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>Tables - Atlantis Lite Bootstrap 4 Admin Dashboard</title>
@@ -571,13 +571,30 @@
 									<table class="table mt-3">
 										<thead>
 											<tr>
-												<th scope="col">id</th>
-												<th scope="col">name</th>
-												<th scope="col">pwd</th>
+												<th scope="col">#</th>
+												<th scope="col">First</th>
+												<th scope="col">Last</th>
+												<th scope="col">Handle</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="${}"></tr>
+											<tr>
+												<td>1</td>
+												<td>Mark</td>
+												<td>Otto</td>
+												<td>@mdo</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>Jacob</td>
+												<td>Thornton</td>
+												<td>@fat</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td colspan="2">Larry the Bird</td>
+												<td>@twitter</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>

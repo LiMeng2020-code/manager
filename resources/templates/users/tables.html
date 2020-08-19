@@ -572,12 +572,16 @@
 										<thead>
 											<tr>
 												<th scope="col">id</th>
-												<th scope="col">name</th>
-												<th scope="col">pwd</th>
+												<th scope="col">username</th>
+												<th scope="col">password</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="${}"></tr>
+											<tr th:each="user:${users}">
+												<td th:text="${user.getId()}"></td>
+												<td th:text="${user.getName()}"></td>
+												<td th:text="${user.getPwd()}"></td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
