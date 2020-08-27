@@ -260,7 +260,7 @@
 							<ul class="dropdown-menu dropdown-user animated fadeIn">
 								<div class="dropdown-user-scroll scrollbar-outer">
 									<li>
-										<div class="user-box">
+										<div class="user-box" th:fragment="loginUser">
 											<div class="avatar-lg"><img th:src="@{/assets/img/profile.jpg}" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
 												<h4 th:text="${loginUserName}"></h4>
@@ -295,7 +295,7 @@
 						<div class="avatar-sm float-left mr-2">
 							<img th:src="@{/assets/img/profile.jpg}" alt="..." class="avatar-img rounded-circle">
 						</div>
-						<div class="info">
+						<div class="info" th:fragment="login">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span th:text="${loginUserName}">
 									<span class="user-level">admin</span>
@@ -480,7 +480,7 @@
 										</a>
 									</li>
 									<li>
-										<a th:href="#{/emps}">
+										<a th:href="@{/emps}">
 											<span class="sub-item">Datatables</span>
 										</a>
 									</li>

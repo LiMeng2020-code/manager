@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ public class loginController {
 
     @PostMapping(value = "/user/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password,
-                        Model model){
+                        Model model, HttpSession httpSession){
 
         //具体的业务
         if(userMapper.queryUserByName(username) == null){
@@ -47,6 +48,7 @@ public class loginController {
 
         if (!StringUtils.isEmpty(username)&user.getPwd().equals(password))
         {
+            httpSession.setAttribute("loginUser",username);
             model.addAttribute("loginUserName",username);
             return "index";
         }else {

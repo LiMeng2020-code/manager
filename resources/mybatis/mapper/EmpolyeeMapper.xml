@@ -18,4 +18,6 @@
     <select id="getDepartment" resultType="Department">
         select * from department where id= #{id}
     </select>
+
+
 </mapper>
