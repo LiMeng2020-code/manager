@@ -19,5 +19,11 @@
         select * from department where id= #{id}
     </select>
 
+    <select id="deleteEmpolyeeById" resultType="Empolyee">
+        delete  from empolyee where id = #{id}
+    </select>
 
+    <select id="alter" resultType="Empolyee">
+        update empolyee set name=#{name}, email=#{email}, gender=#{gender}, salary=#{salary}, depid=#{depid} where id=#{id}
+    </select>
 </mapper>

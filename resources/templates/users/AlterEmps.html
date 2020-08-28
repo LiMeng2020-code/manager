@@ -294,7 +294,9 @@
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-									<span th:text="${session.loginUser}">
+								<span>
+									Hizrian
+									<span class="user-level">Administrator</span>
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -455,7 +457,7 @@
 							<div class="collapse" id="forms">
 								<ul class="nav nav-collapse">
 									<li>
-										<a  th:href="@{/emp}">
+										<a href="../forms/forms.html">
 											<span class="sub-item">Basic Form</span>
 										</a>
 									</li>
@@ -535,7 +537,7 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">雇员总览</h4>
+						<h4 class="page-title">新增雇员</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -560,35 +562,43 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h2><a class="btn btn-sm btn-success" th:href="@{/emp}">添加</a> </h2>
 								</div>
 
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="basic-datatables" class="display table table-striped table-hover" >
-											<thead>
-												<tr>
-													<th>id</th>
-													<th>name</th>
-													<th>email</th>
-													<th>gender</th>
-													<th>department</th>
-													<th>Salary</th>
-												</tr>
-											</thead>
-											<tbody>
-											<tr th:each="empolyee:${empolyees}">
-												<td th:text="${empolyee.getId()}"></td>
-												<td th:text="${empolyee.getName()}"></td>
-												<td th:text="${empolyee.getEmail()}"></td>
-												<td th:text="${empolyee.getGender()=='0'?'女':'男'}"></td>
-												<td th:text="${empolyee.getDepartment().getDepartmentName()}"></td>
-												<td th:text="${empolyee.getSalary()}"></td>
-												<td ><a th:href="@{/delEmp(id=${empolyee.getId()})}" class="btn btn-sm btn-danger" >删除</a>
-													<a th:href="@{/alterEmp(id=${empolyee.getId()})}" class="btn btn-sm btn-dark" >修改</a></td>
-											</tr>
-											</tbody>
-										</table>
+										<form th:action="@{/alterEmp}" method="post">
+											<div class="form-group">
+												<label>LastName</label>
+												<input type="text" name="name" class="form-control" placeholder="海绵宝宝">
+											</div>
+											<div class="form-group">
+												<label>Email</label>
+												<input type="email" name="email" class="form-control" placeholder="1176244270@qq.com">
+											</div>
+											<div class="form-group">
+												<label>Gender</label><br>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="gender" value="1">
+													<label class="form-check-label">男</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="gender" value="0">
+													<label class="form-check-label">女</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<label>department</label>
+												<select class="form-control" name="department.id">
+													<option th:each="dept:${departments}" th:text="${dept.getDepartmentName()}" th:value="${dept.getId()}"></option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>salary</label>
+												<input type="number" name="salary" class="form-control" placeholder="穷死了">
+											</div>
+											<button type="submit" class="btn btn-primary">修改</button>
+										</form>
+
 									</div>
 								</div>
 							</div>

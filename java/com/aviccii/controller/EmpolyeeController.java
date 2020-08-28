@@ -6,7 +6,6 @@ import com.aviccii.pojo.Department;
 import com.aviccii.pojo.Empolyee;
 import com.aviccii.pojo.User;
 import com.aviccii.service.DepartmentService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +52,7 @@ public class EmpolyeeController {
     }
 
     @RequestMapping("/emps")
-    public String empList(Model model, HttpSession session){
+    public String empList(Model model){
         List<Empolyee> empolyees = empolyeeMapper.queryEmpList();
         model.addAttribute("empolyees",empolyees);
         return "users/datatables";
@@ -70,6 +69,29 @@ public class EmpolyeeController {
     public String AddEmp(@RequestParam("name")String name, @RequestParam("email")String email,
                          @RequestParam("gender")int gender, @RequestParam("department.id")int depid, @RequestParam("salary")int salary){
          empolyeeMapper.save(name,email,gender,depid,salary);
+        return "redirect:/emps";
+    }
+
+    @RequestMapping("/delEmp")
+    public String delEmp(int id){
+        empolyeeMapper.deleteEmpolyeeById(id);
+        return "redirect:/emps";
+    }
+
+    @GetMapping("/alterEmp")
+    public String toAlterpage(Model model, @RequestParam int id, HttpSession session){
+        List<Department> departments = departmentService.queryDepList();
+        model.addAttribute("departments",departments);
+        session.setAttribute("id",id);
+        return "users/alterEmps";
+    }
+
+    @PostMapping("/alterEmp")
+    public String AlterEmp(@RequestParam("name") String name, @RequestParam("email") String email,
+                           @RequestParam("gender") int gender, @RequestParam("department.id") int depid, @RequestParam("salary") int salary, HttpSession session){
+        int id = (int) session.getAttribute("id");
+        System.out.println(id+name+email+gender+depid+salary);
+        empolyeeMapper.alter(id,name,email,gender,depid,salary);
         return "redirect:/emps";
     }
 }
